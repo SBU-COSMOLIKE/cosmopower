@@ -464,7 +464,7 @@ class YAMLParser:
         Locate the parameter ranges in the parser and get the latin hypercube
         samples.
         """
-        import pyDOE
+        import pyDOE3
 
         ranges = {}
 
@@ -472,7 +472,7 @@ class YAMLParser:
             xmin, xmax = self.parameter_value(param)
             ranges[param] = np.linspace(xmin, xmax, self.nsamples)
 
-        lhc = pyDOE.lhs(len(self.input_parameters), self.nsamples,
+        lhc = pyDOE3.lhs(len(self.input_parameters), self.nsamples,
                         criterion=None)
         idx = (lhc * self.nsamples).astype(int)
 
@@ -490,7 +490,7 @@ class YAMLParser:
         is recursively doubled by adding a second LHC on top of the given LHC,
         that interlaces the existing sample points.
         """
-        import pyDOE
+        import pyDOE3
 
         p = list(lhc.keys())[0]
         n = lhc[p].shape[0]
@@ -510,7 +510,7 @@ class YAMLParser:
                 else:
                     reparse[param] = val
 
-            lhc_idx = pyDOE.lhs(len(self.sampled_parameters), n - 1,
+            lhc_idx = pyDOE3.lhs(len(self.sampled_parameters), n - 1,
                                 criterion=None)
             lhc_idx = (lhc_idx * (n - 1)).astype(int)
 
