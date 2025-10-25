@@ -22,7 +22,7 @@ long_description = read_file("README.md")
 if 'arm' in os.uname().machine:
     tensorflow = 'tensorflow-metal'
 else:
-    tensorflow = 'tensorflow<2.14'
+    tensorflow = 'tensorflow'
 
 setup(classifiers=['Operating System :: OS Independent',
                    'Intended Audience :: Developers',
